@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Sistem Poin Kemuridan · SD Al-Basyir &amp; Asrama Waladan Solihan</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #070e24 0%, #0d1b3e 35%, #152554 70%, #09122a 100%);
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-card: rgba(15, 26, 60, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-border-light: rgba(255, 255, 255, 0.28);
+  --tx: #f3f6fc;
+  --tx-dim: #9ab3db;
+  --tx-muted: #6e88b5;
+  --primary: #00a6ff;
+  --primary-glow: rgba(0, 166, 255, 0.35);
+  --primary-grad: linear-gradient(135deg, #0099ff, #6366f1);
+  --accent-purple: #8b5cf6;
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.16);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.16);
+  --danger: #f43f5e;
+  --danger-bg: rgba(244, 63, 94, 0.16);
+  --radius-xl: 22px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-pill: 9999px;
+  --shadow-lg: 0 16px 40px -10px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 166, 255, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: var(--tx);
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  font-size: 13.5px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(85px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.45;
+  animation: floatOrb 18s ease-in-out infinite alternate;
+}
+.orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #0088ff 0%, rgba(0,136,255,0) 70%); top: -100px; left: -100px; }
+.orb-2 { width: 620px; height: 620px; background: radial-gradient(circle, #7928ca 0%, rgba(121,40,202,0) 70%); bottom: -120px; right: -80px; animation-duration: 22s; }
+.orb-3 { width: 440px; height: 440px; background: radial-gradient(circle, #00dfd8 0%, rgba(0,223,216,0) 70%); top: 40%; left: 60%; animation-duration: 15s; }
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, 25px) scale(1.06); }
+  100% { transform: translate(-25px, 45px) scale(0.96); }
+}
+
+.wrap {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+  transition: filter 0.3s ease;
+}
+
+body.auth-locked .wrap {
+  filter: blur(14px) grayscale(40%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.glass {
+  background: var(--glass-card);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  pointer-events: none;
+}
+
+header.header-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 24px;
+  margin-bottom: 20px;
+}
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.logo-frame {
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 18px;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 25px rgba(0, 140, 255, 0.35);
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.logo-frame:hover {
+  transform: rotate(-3deg) scale(1.05);
+}
+.logo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.school-meta h1 {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  background: linear-gradient(100deg, #ffffff 40%, #8ec5fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.school-meta .badge-app {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 166, 255, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  -webkit-text-fill-color: initial;
+}
+.school-meta p {
+  color: var(--tx-dim);
+  font-size: 12.5px;
+  margin-top: 2px;
+}
+.school-meta .pic-kesiswaan {
+  color: #cbd5e1;
+  font-size: 12px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.school-meta .perm-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Sesi Aktif 2 Jam */
+.session-timer-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 20, 50, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 15px rgba(0, 166, 255, 0.15);
+}
+.session-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 99px;
+  letter-spacing: 0.5px;
+}
+.session-badge.admin-badge {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  color: #fff;
+}
+.session-badge.pengguna-badge {
+  background: linear-gradient(135deg, #059669, #0284c7);
+  color: #fff;
+}
+.timer-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.timer-pulse {
+  width: 7px;
+  height: 7px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulseDot 1.4s infinite;
+}
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 8px #10b981; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+.filter-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  padding: 6px 12px;
+  border-radius: var(--radius-lg);
+}
+.filter-box label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tx-muted);
+  text-transform: uppercase;
+}
+.filter-box select {
+  background: transparent;
+  border: none;
+  color: var(--tx);
+  font-weight: 600;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
+}
+.filter-box select option {
+  background: #0d1b3e;
+  color: #fff;
+}
+
+nav.nav-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(10, 18, 42, 0.75);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  margin-bottom: 22px;
+  overflow-x: auto;
+}
+nav button.tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--tx-dim);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+nav button.tab-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+nav button.tab-btn.active {
+  background: var(--primary-grad);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 153, 255, 0.45);
+}
+nav button.tab-btn .badge-count {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.3);
+  margin-left: 2px;
+}
+
+.view-section {
+  display: none;
+  animation: fadeInView 0.3s ease forwards;
+}
+.view-section.active {
+  display: block;
+}
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--radius-lg);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.3);
+}
+.stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--tx-dim);
+  font-size: 12px;
+  font-weight: 600;
+}
+.stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+.stat-val {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-top: 8px;
+}
+.stat-sub {
+  font-size: 11px;
+  color: var(--tx-muted);
+  margin-top: 4px;
+}
+
+.sc-blue .stat-icon { background: rgba(0, 166, 255, 0.2); color: #38bdf8; }
+.sc-purple .stat-icon { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+.sc-green .stat-icon { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.sc-yellow .stat-icon { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.sc-red .stat-icon { background: rgba(244, 63, 94, 0.2); color: #fb7185; }
+
+/* Accordion Collapsible Panels: Default TERTUTUP (MINIMALIS) */
+.acc-panel {
+  margin-bottom: 18px;
+  border-radius: var(--radius-xl);
+}
+.acc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.2s ease;
+}
+.acc-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.acc-header .title-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.acc-header .title-area i {
+  color: var(--primary);
+  font-size: 16px;
+}
+.acc-header h2 {
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.acc-header .acc-toggle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: var(--tx-dim);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.acc-body {
+  display: none;
+  padding: 6px 22px 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.acc-panel.open .acc-body {
+  display: block;
+}
+.acc-panel.open .acc-toggle-icon {
+  transform: rotate(180deg);
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.search-input-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+.search-input-wrap i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tx-muted);
+}
+.search-input-wrap input {
+  padding-left: 38px !important;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 13px;
+  background: rgba(8, 16, 40, 0.7);
+  border: 1px solid var(--glass-border);
+  color: var(--tx);
+  padding: 9px 13px;
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+  background: rgba(12, 24, 60, 0.9);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--tx);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--glass-border-light);
+  transform: translateY(-1px);
+}
+.btn.btn-primary {
+  background: var(--primary-grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 153, 255, 0.35);
+}
+.btn.btn-primary:hover {
+  box-shadow: 0 8px 24px rgba(0, 153, 255, 0.55);
+}
+.btn.btn-danger {
+  background: var(--danger-bg);
+  color: #fda4af;
+  border-color: rgba(244, 63, 94, 0.4);
+}
+.btn.btn-danger:hover {
+  background: var(--danger);
+  color: #fff;
+}
+.btn.btn-success {
+  background: var(--success-bg);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+.btn.btn-success:hover {
+  background: var(--success);
+  color: #fff;
+}
+.btn.btn-drive {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(14, 165, 233, 0.25));
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  color: #38bdf8;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.2);
+}
+.btn.btn-drive:hover {
+  background: linear-gradient(135deg, #0ea5e9, #10b981);
+  color: #fff;
+}
+.btn.btn-sm {
+  padding: 5px 11px;
+  font-size: 11.5px;
+  border-radius: 8px;
+}
+.btn-action-icon {
+  padding: 5px 9px;
+  font-size: 11px;
+  border-radius: 7px;
+}
+
+/* Floating Dock Toggle Panel Minimalis */
+.floating-dock {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 850;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-dock-toggle {
+  border-radius: var(--radius-pill);
+  padding: 11px 22px;
+  background: rgba(13, 25, 58, 0.94);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 20px rgba(0, 166, 255, 0.3);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-dock-toggle:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: #38bdf8;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 166, 255, 0.45);
+}
+.btn-dock-toggle i {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(5, 12, 32, 0.45);
+  max-height: 65vh;
+}
+table.glass-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  text-align: left;
+}
+table.glass-table th {
+  position: sticky;
+  top: 0;
+  background: rgba(13, 25, 58, 0.96);
+  backdrop-filter: blur(12px);
+  color: var(--tx-dim);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 2;
+  white-space: nowrap;
+}
+table.glass-table td {
+  padding: 10px 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
+}
+table.glass-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+table.glass-table tfoot td {
+  background: rgba(15, 28, 65, 0.85);
+  font-weight: 800;
+  border-top: 1px solid var(--glass-border);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status-badge.s-good {
+  background: var(--success-bg);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+.status-badge.s-ok {
+  background: var(--warning-bg);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+.status-badge.s-bad {
+  background: var(--danger-bg);
+  color: #fb7185;
+  border: 1px solid rgba(251, 113, 133, 0.3);
+}
+
+.score-bar {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 4px;
+  min-width: 80px;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+.form-group.col-span-full {
+  grid-column: 1 / -1;
+}
+.form-group label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--tx-dim);
+  margin-bottom: 5px;
+}
+.preview-banner {
+  padding: 10px 16px;
+  background: rgba(0, 166, 255, 0.1);
+  border: 1px dashed rgba(0, 166, 255, 0.35);
+  border-radius: var(--radius-md);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+/* Modal Overlay & Login Gate */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 9, 26, 0.88);
+  backdrop-filter: blur(18px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+  animation: fadeIn 0.25s ease;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-box {
+  max-width: 480px;
+  width: 100%;
+  background: #0f1c3d;
+  border: 1px solid var(--glass-border-light);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 0 25px 65px -10px rgba(0,0,0,0.9), 0 0 30px rgba(0, 166, 255, 0.2);
+  position: relative;
+}
+.login-header-logo {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 12px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 6px;
+  box-shadow: 0 12px 30px rgba(0,166,255,0.35);
+  display: grid;
+  place-items: center;
+}
+.login-header-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Checkbox & Quick Account Cards Stylings */
+.remember-toggle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  user-select: none;
+}
+.custom-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--tx-dim);
+  font-weight: 600;
+}
+.custom-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #00a6ff;
+  cursor: pointer;
+  margin: 0;
+}
+.quick-accounts-section {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(14, 28, 64, 0.65);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.25);
+}
+.quick-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.quick-header-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.quick-accounts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.quick-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.quick-account-btn:hover {
+  background: rgba(0, 166, 255, 0.18);
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 166, 255, 0.25);
+}
+.quick-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.quick-avatar.admin-av {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  color: #fff;
+}
+.quick-avatar.user-av {
+  background: linear-gradient(135deg, #059669, #0284c7);
+  color: #fff;
+}
+.quick-meta {
+  overflow: hidden;
+}
+.quick-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.quick-sub {
+  font-size: 10px;
+  color: var(--tx-dim);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(70px);
+  background: rgba(15, 23, 42, 0.95);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+#toast.err {
+  border-color: rgba(244, 63, 94, 0.6);
+  background: rgba(60, 10, 25, 0.95);
+  color: #fecdd3;
+}
+
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .orb, header, nav, .noprint, #toast, .modal-overlay, .acc-header, .toolbar, .btn, .floating-dock { display: none !important; }
+  .wrap { max-width: 100% !important; padding: 0 !important; }
+  .view-section { display: none !important; }
+  #view-rekap { display: block !important; }
+  .acc-body { display: block !important; padding: 0 !important; border: none !important; }
+  .glass { background: none !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; }
+  .print-header-area { display: block !important; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 12px; }
+  table.glass-table { border: 1px solid #000; font-size: 10px; color: #000 !important; }
+  table.glass-table th, table.glass-table td { border: 1px solid #999 !important; color: #000 !important; background: transparent !important; padding: 5px 6px; }
+}
+.print-header-area { display: none; }
+
+@media (max-width: 768px) {
+  .wrap { padding: 12px 12px 60px; }
+  header.header-panel { padding: 14px; }
+  .logo-frame { width: 54px; height: 54px; }
+  .school-meta h1 { font-size: 17px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-val { font-size: 24px; }
+  .floating-dock { bottom: 16px; right: 16px; }
+  .quick-accounts-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="auth-locked">
+<!-- Glowing orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<!-- ================= GERBANG LOGIN WAJIB (SESI 2 JAM + AKSES CEPAT & INGAT AKUN) ================= -->
+<div class="modal-overlay active" id="login-gate-modal">
+<div class="modal-box">
+<div style="text-align:center; margin-bottom:18px;">
+<div class="login-header-logo">
+<img alt="SD Al-Basyir" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPnAyiUhnY8_3gUPKuRMuZmLPIOiPRtGTbrwKKnS73ZwGZAbpjyROg0u8e5U3f8Qg92anbTfiDSNDW69piujUQd2ZaX_TH15EK_0Chw2sSzwGnRSM_NuIlZUx9IVXCkCHMpeuZh_Mo31LVZSDTK6Py9dSdtPtqHuTONTyD-XwJCLcOIOegWtn1R1K6Ft0MExHt4GMy4BoHB2x4BrtYzvCHfdFRl2-hppaG5dG7Z5qa_UHb0rSfi8wcwQ"/>
+</div>
+<h2 style="font-size:19px; font-weight:800; color:#fff; letter-spacing:-0.3px;">Akses point Siswa/wi</h2>
+<p style="font-size:12px; color:var(--tx-dim); margin-top:3px;">SD Al-Basyir</p>
+<div style="margin-top:6px; display:inline-flex; align-items:center; gap:5px; font-size:11px; padding:3px 10px; border-radius:99px; background:rgba(0,166,255,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.3);">
+<i class="fa-regular fa-clock"></i> Sesi Aktif Berlaku Tepat 2 Jam (7.200 dtk)
+      </div>
+</div>
+<!-- OPSI AKSES CEPAT SATU KLIK (PILIH AKUN TERSIMPAN) -->
+<form id="form-login-gate">
+<div style="margin-bottom:12px;">
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+<label style="display:block; font-size:11.5px; font-weight:700; color:var(--tx-dim);">
+<i class="fa-solid fa-user"></i> Username Akun
+          </label>
+<span id="saved-acc-badge" style="font-size:10.5px; color:#38bdf8; display:none; align-items:center; gap:4px;">
+<i class="fa-solid fa-circle-check"></i> Akun tersimpan
+          </span>
+</div>
+<input autocomplete="username" id="gate-username" placeholder="Masukkan username (admin / pengguna)" required="" type="text"/>
+</div>
+<div style="margin-bottom:12px;">
+<label style="display:block; font-size:11.5px; font-weight:700; color:var(--tx-dim); margin-bottom:5px;">
+<i class="fa-solid fa-key"></i> Kata Sandi
+        </label>
+<div style="position:relative;">
+<input autocomplete="current-password" id="gate-password" placeholder="Masukkan kata sandi" required="" style="padding-right:40px;" type="password"/>
+<button onclick="window.togglePwdMask('gate-password', this)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--tx-muted); cursor:pointer;" type="button">
+<i class="fa-solid fa-eye"></i>
+</button>
+</div>
+</div>
+<!-- TOGGLE / CHECKBOX INGAT AKUN DI PERANGKAT INI -->
+<div class="remember-toggle-wrap">
+<label class="custom-checkbox-label">
+<input id="gate-remember" type="checkbox"/>
+<span>Ingat Info Login di Perangkat Ini</span>
+</label>
+<button class="btn btn-sm" onclick="window.clearSavedAccounts()" style="padding: 2px 7px; font-size: 10.5px; background: transparent; border-color: rgba(255,255,255,0.1); color: var(--tx-muted);" title="Hapus info akun tersimpan" type="button">Hapus Data</button>
+</div>
+<div id="saved-acc-info-bar" style="display: none; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 8px 12px; border-radius: 10px; background: rgba(0, 166, 255, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); font-size: 11.5px;"><div style="display: flex; align-items: center; gap: 7px; color: #38bdf8; font-weight: 600;"><i class="fa-solid fa-circle-check"></i><span>Akun tersimpan terisi otomatis</span></div><button class="btn btn-sm" onclick="window.resetLoginForm()" style="padding: 3px 8px; font-size: 11px; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--tx-dim);" title="Kosongkan atau hapus akun yang tersimpan" type="button"><i class="fa-solid fa-rotate-left"></i> Ganti Akun</button></div>
+<button class="btn btn-primary" style="width:100%; padding:12px; font-size:13.5px; font-weight:800; border-radius:12px;" type="submit">
+<i class="fa-solid fa-right-to-bracket"></i> Masuk ke Sistem Poin
+      </button>
+<div style="margin-top:16px; padding:12px 14px; border-radius:12px; background:rgba(0, 0, 0, 0.35); border:1px solid rgba(255,255,255,0.08); font-size:11.5px; line-height:1.6;">
+<div style="display:flex; align-items:center; justify-content:center; gap:8px; color:var(--tx-dim); font-size:12px; font-weight:600; padding:4px 0;">
+<i class="fa-solid fa-shield-halved" style="color:#38bdf8;"></i> <span>Website dilindungi</span>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- ================= DOCK MENGAMBANG DI POJOK KANAN BAWAH (MINIMALIS TOGGLE) ================= -->
+<div class="floating-dock noprint" id="floating-dock">
+<button class="btn-dock-toggle" id="btn-toggle-all-panels" title="Buka Luas atau Ciutkan Semua Panel">
+<i class="fa-solid fa-chevron-up" id="dock-arrow-icon"></i>
+<span id="dock-toggle-label">Mode Panel: Tertutup (Minimalis)</span>
+</button>
+</div>
+<!-- ================= WRAP APLIKASI UTAMA ================= -->
+<div class="wrap" id="main-app-wrap">
+<!-- Top App Header -->
+<header class="glass header-panel noprint">
+<div class="brand-group">
+<div class="logo-frame">
+<img alt="Logo Al-Basyir" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPnAyiUhnY8_3gUPKuRMuZmLPIOiPRtGTbrwKKnS73ZwGZAbpjyROg0u8e5U3f8Qg92anbTfiDSNDW69piujUQd2ZaX_TH15EK_0Chw2sSzwGnRSM_NuIlZUx9IVXCkCHMpeuZh_Mo31LVZSDTK6Py9dSdtPtqHuTONTyD-XwJCLcOIOegWtn1R1K6Ft0MExHt4GMy4BoHB2x4BrtYzvCHfdFRl2-hppaG5dG7Z5qa_UHb0rSfi8wcwQ"/>
+</div>
+<div class="school-meta">
+<h1>
+          Sistem Poin Kemuridan
+          <span class="badge-app">SD Al-Basyir</span>
+</h1>
+<p>Asrama Pendidikan Waladan Solihan · Kedisiplinan &amp; Prestasi</p>
+<div class="pic-kesiswaan">
+<i class="fa-solid fa-user-shield" style="color:#38bdf8;"></i> Kesiswaan: <b>Rizqi Anil Barqillah, S.Pd</b>
+</div>
+<div class="perm-status-badge" id="header-perm-indicator">
+<i class="fa-solid fa-user-check"></i> Hak Akses: <b id="header-perm-text">Wewenang Penuh (Edit &amp; Hapus Aktif)</b>
+</div>
+</div>
+</div>
+<div class="header-controls">
+<!-- Session Countdown Timer Pill (2 Jam) -->
+<div class="session-timer-pill" id="session-timer-pill">
+<span class="timer-pulse"></span>
+<span class="session-badge admin-badge" id="session-role-badge">Admin</span>
+<div class="timer-display">
+<i class="fa-regular fa-clock"></i>
+<span id="session-countdown-txt">02:00:00</span>
+</div>
+<button class="btn btn-sm btn-danger" onclick="window.handleLogout()" style="padding:3px 9px; font-size:11px; margin-left:4px;" title="Keluar dari sesi">
+<i class="fa-solid fa-right-from-bracket"></i> Keluar
+        </button>
+</div>
+<div class="filter-box">
+<label for="sel-ya"><i class="fa-regular fa-calendar"></i> T.A.</label>
+<select id="sel-ya"></select>
+</div>
+<div class="filter-box">
+<label for="sel-sem"><i class="fa-solid fa-clock-rotate-left"></i> Semester</label>
+<select id="sel-sem">
+<option value="1">Semester 1 (Ganjil)</option>
+<option value="2">Semester 2 (Genap)</option>
+</select>
+</div>
+<button class="btn btn-sm" id="btn-export-all" title="Cadangkan Data ke JSON"><i class="fa-solid fa-download"></i> Backup JSON</button>
+</div>
+</header>
+<!-- Modern Navigation Bar -->
+<nav class="nav-bar noprint">
+<button class="tab-btn active" data-tab="dash">
+<i class="fa-solid fa-chart-pie"></i> Dashboard
+    </button>
+<button class="tab-btn" data-tab="data">
+<i class="fa-solid fa-list-check"></i> Data Poin &amp; Input
+    </button>
+<button class="tab-btn" data-tab="siswa">
+<i class="fa-solid fa-users"></i> Daftar Siswa/wi <span class="badge-count" id="badge-total-stu">0</span>
+</button>
+<button class="tab-btn" data-tab="rekap">
+<i class="fa-solid fa-print"></i> Rekap Laporan
+    </button>
+</nav>
+<!-- ================= VIEW 1: DASHBOARD ================= -->
+<section class="view-section active" id="view-dash">
+<div class="stats-grid" id="dash-stat-grid"></div>
+<!-- Kelas Overview (Collapsed Minimalis) -->
+<div class="glass acc-panel" id="panel-dash-kelas">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-school"></i>
+<h2>Rekap Siswa per Rombel Kelas (1.A s/d 6.B)</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<div class="table-container">
+<table class="glass-table" id="tbl-kelas-stat"></table>
+</div>
+</div>
+</div>
+<!-- Poin Masing-Masing Siswa (Collapsed Minimalis) -->
+<div class="glass acc-panel" id="panel-dash-siswa">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-ranking-star"></i>
+<h2>Peringkat &amp; Status Poin Siswa (Basis Standar 250 Poin)</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<div class="toolbar">
+<div class="search-input-wrap">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="dash-search" placeholder="Cari nama siswa atau kelas..." type="text"/>
+</div>
+<div style="min-width: 140px;">
+<select id="dash-filter-cls"></select>
+</div>
+<div style="min-width: 140px;">
+<select id="dash-filter-stat">
+<option value="">Semua Status</option>
+<option value="Sangat Baik">Sangat Baik (≥ 200)</option>
+<option value="Baik">Baik (150–199)</option>
+<option value="Parah">Parah (&lt; 150)</option>
+</select>
+</div>
+</div>
+<div class="table-container">
+<table class="glass-table" id="tbl-dash-stu"></table>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= VIEW 2: DATA POIN & INPUT ================= -->
+<section class="view-section" id="view-data">
+<!-- Form Input Poin -->
+<div class="glass acc-panel" id="panel-form-poin">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-pen-to-square"></i>
+<h2 id="form-poin-heading">Input Catatan Pelanggaran / Prestasi Baru</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<form id="form-record">
+<input id="edit-record-id" type="hidden" value=""/>
+<div class="form-grid">
+<div class="form-group">
+<label><i class="fa-solid fa-layer-group"></i> Pilih Rombel Kelas</label>
+<select id="input-cls" required=""></select>
+</div>
+<div class="form-group">
+<label><i class="fa-solid fa-user"></i> Nama Santri/Siswa</label>
+<select id="input-sis" required=""></select>
+</div>
+<div class="form-group">
+<label><i class="fa-solid fa-calendar-day"></i> Tanggal Kejadian</label>
+<input id="input-tgl" required="" type="date"/>
+</div>
+<div class="form-group">
+<label><i class="fa-solid fa-circle-plus" style="color:var(--success)"></i> Poin Tambahan (+ Prestasi)</label>
+<input id="input-add" min="0" placeholder="0" type="number" value="0"/>
+</div>
+<div class="form-group">
+<label><i class="fa-solid fa-circle-minus" style="color:var(--danger)"></i> Poin Pengurangan (- Pelanggaran)</label>
+<input id="input-ded" min="0" placeholder="0" type="number" value="0"/>
+</div>
+<div class="form-group">
+<label><i class="fa-solid fa-folder-open" style="color:#38bdf8;"></i> Berkas Bukti Foto/Dokumen</label>
+<a class="btn btn-drive" href="https://drive.google.com/drive/folders/1M8mxVZipaR83rY_QO-1RMsxLL7Rgd-aJ" rel="noopener noreferrer" style="width:100%; justify-content:center;" target="_blank">
+<i class="fa-brands fa-google-drive"></i> 📁 Buka Google Drive Bukti
+              </a>
+</div>
+<div class="form-group col-span-full">
+<label><i class="fa-solid fa-align-left"></i> Deskripsi Kejadian / Keterangan Lengkap</label>
+<textarea id="input-note" placeholder="Tuliskan catatan kejadian detail..." rows="2"></textarea>
+</div>
+</div>
+<div class="preview-banner" id="input-preview-box">
+<span>Pilih siswa dan tanggal untuk kalkulasi simulasi poin.</span>
+</div>
+<div style="display:flex; gap:10px; margin-top:16px;">
+<button class="btn btn-primary" id="btn-save-record" type="submit">
+<i class="fa-solid fa-floppy-disk"></i> Simpan Catatan Poin
+            </button>
+<button class="btn" id="btn-cancel-edit" onclick="window.cancelRecordEdit()" style="display:none;" type="button">
+              Batal Edit
+            </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Riwayat Poin Table -->
+<div class="glass acc-panel" id="panel-hist-poin">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<h2>Riwayat Lengkap Catatan Poin Kemuridan (Akses Penuh Edit &amp; Hapus)</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<div class="toolbar">
+<div class="search-input-wrap">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="hist-search" placeholder="Cari nama santri, kelas, atau jenis kejadian..." type="text"/>
+</div>
+<div style="min-width: 140px;">
+<select id="hist-filter-cls"></select>
+</div>
+<a class="btn btn-drive btn-sm" href="https://drive.google.com/drive/folders/1M8mxVZipaR83rY_QO-1RMsxLL7Rgd-aJ" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-google-drive"></i> 📁 Drive Bukti
+          </a>
+<button class="btn btn-sm" id="btn-quick-seed" title="Pulihkan data referensi awal 310 data"><i class="fa-solid fa-rotate-left"></i> Muat Ulang Data Asal</button>
+</div>
+<div class="table-container">
+<table class="glass-table" id="tbl-history"></table>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= VIEW 3: DAFTAR SISWA ================= -->
+<section class="view-section" id="view-siswa">
+<div class="glass acc-panel" id="panel-form-siswa">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-user-plus"></i>
+<h2 id="heading-siswa-form">Tambah / Kelola Master Siswa</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<div id="admin-only-stu-notice" style="display:none; padding:10px 14px; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); border-radius:10px; margin-bottom:12px; font-size:12px; color:#6ee7b7;">
+<i class="fa-solid fa-circle-check"></i> Mode Pengguna Staf/Guru: Akses kelola data siswa (tambah, edit, dan hapus) aktif secara penuh.
+        </div>
+<form id="form-student">
+<input id="edit-student-id" type="hidden" value=""/>
+<div class="form-grid">
+<div class="form-group" style="flex:2;">
+<label>Nama Lengkap Santri/Siswa</label>
+<input id="stu-name" placeholder="Contoh: Abdul Rasyid Jumadil Amin Dawolo" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>Kelas (contoh: 1.A, 1.B, 2.C, 6.B)</label>
+<input id="stu-cls" placeholder="1.A" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>Jenis Kelamin</label>
+<select id="stu-gender">
+<option value="L">Laki-laki (L)</option>
+<option value="P">Perempuan (P)</option>
+</select>
+</div>
+</div>
+<div style="display:flex; gap:10px; margin-top:14px;">
+<button class="btn btn-primary" id="btn-save-stu" type="submit"><i class="fa-solid fa-user-check"></i> Simpan Data Siswa</button>
+<button class="btn" id="btn-cancel-stu" onclick="window.cancelStudentEdit()" style="display:none;" type="button">Batal Edit</button>
+</div>
+</form>
+</div>
+</div>
+<div class="glass acc-panel" id="panel-list-siswa">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-address-book"></i>
+<h2>Master Data Siswa/wi SD Al-Basyir (Lengkap Kelas 1.A s/d 6.B)</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<div class="toolbar">
+<div class="search-input-wrap">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="stu-search" placeholder="Cari nama santri atau rombel kelas..." type="text"/>
+</div>
+<div style="min-width: 140px;">
+<select id="stu-filter-cls"></select>
+</div>
+<div style="min-width: 120px;">
+<select id="stu-filter-gender">
+<option value="">Semua L/P</option>
+<option value="L">Laki-laki (Santri)</option>
+<option value="P">Perempuan (Santriwati)</option>
+</select>
+</div>
+</div>
+<div class="table-container">
+<table class="glass-table" id="tbl-students"></table>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= VIEW 4: REKAP LAPORAN (PRINT) ================= -->
+<section class="view-section" id="view-rekap">
+<div class="print-header-area" id="print-letterhead">
+<div style="display:flex; align-items:center; gap:16px;">
+<img alt="Logo Al-Basyir" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPnAyiUhnY8_3gUPKuRMuZmLPIOiPRtGTbrwKKnS73ZwGZAbpjyROg0u8e5U3f8Qg92anbTfiDSNDW69piujUQd2ZaX_TH15EK_0Chw2sSzwGnRSM_NuIlZUx9IVXCkCHMpeuZh_Mo31LVZSDTK6Py9dSdtPtqHuTONTyD-XwJCLcOIOegWtn1R1K6Ft0MExHt4GMy4BoHB2x4BrtYzvCHfdFRl2-hppaG5dG7Z5qa_UHb0rSfi8wcwQ" style="width:65px; height:65px; object-fit:contain;"/>
+<div>
+<h2 style="font-size:17px; font-weight:800; text-transform:uppercase; margin-bottom:2px;">REKAPITULASI POIN KEMURIDAN SANTRI/SISWA</h2>
+<div style="font-size:13px; font-weight:600;">SD Al-Basyir · Asrama Pendidikan Waladan Solihan</div>
+<div id="print-sub-info" style="font-size:12px; color:#555;">Tahun Ajaran 2026/2027 · Semester 1 · Standar Basis 250 Poin</div>
+</div>
+</div>
+</div>
+<div class="glass acc-panel" id="panel-rekap-filter">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-file-invoice"></i>
+<h2>Pengaturan Cetak &amp; Ekspor Rekapitulasi</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body">
+<div class="toolbar" style="margin-bottom:12px;">
+<div style="min-width:140px;">
+<select id="rekap-cls"></select>
+</div>
+<div style="min-width:170px;">
+<select id="rekap-stu"></select>
+</div>
+<div style="min-width:160px;">
+<select id="rekap-mode">
+<option value="detail">Laporan Detail Kejadian</option>
+<option value="ringkasan">Laporan Ringkasan per Siswa</option>
+</select>
+</div>
+<div class="search-input-wrap">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="rekap-q" placeholder="Saring kata kunci..." type="text"/>
+</div>
+</div>
+<div style="display:flex; gap:10px; flex-wrap:wrap;">
+<button class="btn btn-primary" id="btn-print"><i class="fa-solid fa-print"></i> Cetak / Simpan PDF</button>
+<button class="btn btn-success" id="btn-csv"><i class="fa-solid fa-file-csv"></i> Unduh Excel (CSV)</button>
+<a class="btn btn-drive" href="https://drive.google.com/drive/folders/1M8mxVZipaR83rY_QO-1RMsxLL7Rgd-aJ" rel="noopener noreferrer" target="_blank">
+<i class="fa-brands fa-google-drive"></i> 📁 Buka Google Drive Bukti
+          </a>
+</div>
+</div>
+</div>
+<div class="glass acc-panel" id="panel-rekap-table">
+<div class="acc-header" data-toggle="acc">
+<div class="title-area">
+<i class="fa-solid fa-table-list"></i>
+<h2>Pratinjau Lembar Rekapitulasi Poin</h2>
+</div>
+<div class="acc-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
+</div>
+<div class="acc-body" style="padding-top:14px;">
+<div class="table-container">
+<table class="glass-table" id="tbl-rekap"></table>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Modal Dialog Konfirmasi Simpan Info Login -->
+<div class="modal-overlay" id="save-cred-prompt-modal" style="z-index: 2500;">
+<div class="modal-box" style="max-width: 420px; text-align: center; padding: 24px;">
+<div style="width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%; background: rgba(0, 166, 255, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); display: grid; place-items: center; font-size: 24px; color: #38bdf8;">
+<i class="fa-solid fa-floppy-disk"></i>
+</div>
+<h3 style="font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 8px;">Simpan Info Login?</h3>
+<p style="color: var(--tx-dim); font-size: 12.5px; line-height: 1.6; margin-bottom: 20px;">
+      Simpan nama pengguna dan kata sandi di perangkat ini agar terisi otomatis saat membuka web kembali.
+    </p>
+<div style="display: flex; gap: 10px; justify-content: center;">
+<button class="btn" id="btn-prompt-dismiss" style="flex: 1; padding: 10px 16px; border-radius: 10px; font-size: 12.5px;" type="button">Jangan Sekarang</button>
+<button class="btn btn-primary" id="btn-prompt-save" style="flex: 1; padding: 10px 16px; border-radius: 10px; font-size: 12.5px; font-weight: 800;" type="button">
+<i class="fa-solid fa-check"></i> Simpan
+      </button>
+</div>
+</div>
+</div>
+<!-- Modal Dialog Konfirmasi Tindakan Hapus / Reset -->
+<div class="modal-overlay" id="confirm-modal">
+<div class="modal-box">
+<h3 id="modal-title" style="font-size:17px; margin-bottom:10px; color:#fff;">Konfirmasi Tindakan</h3>
+<p id="modal-msg" style="color:var(--tx-dim); margin-bottom:18px; font-size:13px;"></p>
+<div style="display:flex; justify-content:flex-end; gap:10px;">
+<button class="btn" id="modal-btn-cancel">Batal</button>
+<button class="btn btn-danger" id="modal-btn-ok">Ya, Lanjutkan</button>
+</div>
+</div>
+</div>
+<div id="toast"></div>
+<!-- Data & Logic JS Externalized/Modularized -->
+<script>
+(function(){
+  "use strict";
+
+  const BASE_POINT = 250;
+  const STORAGE_KEY = "albasyir_poin_master_v4_full";
+  const AUTH_KEY = "albasyir_session_state_v4";
+  const REMEMBER_KEY = "albasyir_remembered_credentials";
+  const SESSION_DURATION_MS = 2 * 60 * 60 * 1000; // 2 Jam (7.200.000 ms)
+
+  let appState = {
+    userRole: null,
+    sessionExpires: 0,
+    academicYear: "2026/2027",
+    semester: "1",
+    students: [],
+    records: []
+  };
+
+  // ATURAN HAK AKSES BARU:
+  // canMod mengembalikan true untuk semua catatan baik login sebagai Admin maupun Pengguna (Guru/Staf)
+  const canMod = function(recordOrItem) {
+    return true;
+  };
+  window.canMod = canMod;
+
+  let pendingCredentialsToSave = null;
+  let confirmCallback = null;
+
+  function askConfirm(msg, title, onOk) {
+    const modal = document.getElementById("confirm-modal");
+    const mTitle = document.getElementById("modal-title");
+    const mMsg = document.getElementById("modal-msg");
+    if (!modal) {
+      if (confirm(msg)) onOk();
+      return;
+    }
+    if (mTitle) mTitle.textContent = title || "Konfirmasi Tindakan";
+    if (mMsg) mMsg.textContent = msg;
+    confirmCallback = onOk;
+    modal.classList.add("active");
+  }
+
+  const btnConfCancel = document.getElementById("modal-btn-cancel");
+  const btnConfOk = document.getElementById("modal-btn-ok");
+  if (btnConfCancel) {
+    btnConfCancel.onclick = () => {
+      document.getElementById("confirm-modal")?.classList.remove("active");
+      confirmCallback = null;
+    };
+  }
+  if (btnConfOk) {
+    btnConfOk.onclick = () => {
+      document.getElementById("confirm-modal")?.classList.remove("active");
+      if (confirmCallback) {
+        confirmCallback();
+        confirmCallback = null;
+      }
+    };
+  }
+
+  // Toast Helper
+  window.showToast = function(msg, isErr = false) {
+    const t = document.getElementById("toast");
+    if (!t) return;
+    t.textContent = msg;
+    t.className = isErr ? "show err" : "show";
+    setTimeout(() => { t.className = ""; }, 3200);
+  };
+
+  window.togglePwdMask = function(inputId, btn) {
+    const inp = document.getElementById(inputId);
+    if (!inp) return;
+    const isPwd = inp.type === "password";
+    inp.type = isPwd ? "text" : "password";
+    const ic = btn.querySelector("i");
+    if (ic) ic.className = isPwd ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+  };
+
+  // Otomatis Cek Akun Tersimpan saat Muat Halaman
+  function checkSavedCredentials() {
+    try {
+      const saved = localStorage.getItem(REMEMBER_KEY);
+      const badge = document.getElementById("saved-acc-badge");
+      const infoBar = document.getElementById("saved-acc-info-bar");
+      const uInp = document.getElementById("gate-username");
+      const pInp = document.getElementById("gate-password");
+      const remChk = document.getElementById("gate-remember");
+
+      if (saved) {
+        const creds = JSON.parse(saved);
+        if (creds && creds.username) {
+          if (uInp) uInp.value = creds.username;
+          if (pInp) pInp.value = creds.password || "";
+          if (remChk) remChk.checked = true;
+          if (badge) badge.style.display = "inline-flex";
+          if (infoBar) infoBar.style.display = "flex";
+        }
+      } else {
+        if (badge) badge.style.display = "none";
+        if (infoBar) infoBar.style.display = "none";
+      }
+    } catch(e) {
+      console.warn("Failed checking saved credentials", e);
+    }
+  }
+
+  // Hapus Akun Tersimpan
+  window.clearSavedAccounts = function() {
+    localStorage.removeItem(REMEMBER_KEY);
+    const uInp = document.getElementById("gate-username");
+    const pInp = document.getElementById("gate-password");
+    const badge = document.getElementById("saved-acc-badge");
+    const infoBar = document.getElementById("saved-acc-info-bar");
+    const remChk = document.getElementById("gate-remember");
+    if (uInp) uInp.value = "";
+    if (pInp) pInp.value = "";
+    if (remChk) remChk.checked = false;
+    if (badge) badge.style.display = "none";
+    if (infoBar) infoBar.style.display = "none";
+    window.showToast("Akun tersimpan berhasil dihapus dari perangkat.", false);
+  };
+
+  // Kosongkan form untuk ketik manual
+  window.resetLoginForm = function() {
+    const uInp = document.getElementById("gate-username");
+    const pInp = document.getElementById("gate-password");
+    if (uInp) { uInp.value = ""; uInp.focus(); }
+    if (pInp) pInp.value = "";
+    window.showToast("Silakan ketik akun manual.", false);
+  };
+
+  function executeLogin(role) {
+    const expireTime = Date.now() + SESSION_DURATION_MS;
+    appState.userRole = role;
+    appState.sessionExpires = expireTime;
+
+    try {
+      sessionStorage.setItem(AUTH_KEY, JSON.stringify({
+        role: role,
+        expires: expireTime
+      }));
+    } catch(e){}
+
+    // Buka lock
+    document.body.classList.remove("auth-locked");
+    const modal = document.getElementById("login-gate-modal");
+    if (modal) modal.classList.remove("active");
+
+    // Update UI Badge
+    const roleBadge = document.getElementById("session-role-badge");
+    if (roleBadge) {
+      roleBadge.textContent = role === "admin" ? "Admin" : "Pengguna";
+      roleBadge.className = role === "admin" ? "session-badge admin-badge" : "session-badge pengguna-badge";
+    }
+
+    // Role-based restrictions & indicators
+    // Sekarang KEDUA ROLE (Admin & Pengguna) memiliki wewenang penuh untuk tambah/edit/hapus!
+    const permText = document.getElementById("header-perm-text");
+    if (permText) {
+      permText.textContent = role === "admin"
+        ? "Wewenang Penuh Administrator (Edit & Hapus Bebas)"
+        : "Wewenang Penuh Pengguna / Guru (Edit & Hapus Bebas)";
+    }
+
+    const stuNotice = document.getElementById("admin-only-stu-notice");
+    const btnSaveStu = document.getElementById("btn-save-stu");
+    if (stuNotice) stuNotice.style.display = "block";
+    if (btnSaveStu) btnSaveStu.disabled = false;
+
+    window.showToast(`Selamat datang! Anda masuk sebagai ${role === 'admin' ? 'Admin' : 'Pengguna (Staf/Guru)'}. Wewenang edit dan hapus aktif penuh.`);
+    startSessionTimer();
+    renderAllViews();
+  }
+
+  // Dialog simpan info login
+  function showSavePrompt(creds, onDone) {
+    pendingCredentialsToSave = creds;
+    const modal = document.getElementById("save-cred-prompt-modal");
+    if (!modal) {
+      onDone();
+      return;
+    }
+    modal.classList.add("active");
+    const btnSave = document.getElementById("btn-prompt-save");
+    const btnDismiss = document.getElementById("btn-prompt-dismiss");
+
+    const cleanup = () => {
+      modal.classList.remove("active");
+      if (btnSave) btnSave.onclick = null;
+      if (btnDismiss) btnDismiss.onclick = null;
+      pendingCredentialsToSave = null;
+      onDone();
+    };
+
+    if (btnSave) {
+      btnSave.onclick = () => {
+        try {
+          localStorage.setItem(REMEMBER_KEY, JSON.stringify(pendingCredentialsToSave));
+          window.showToast("Info login disimpan di perangkat ini.", false);
+        } catch(e){}
+        cleanup();
+      };
+    }
+    if (btnDismiss) {
+      btnDismiss.onclick = () => {
+        cleanup();
+      };
+    }
+  }
+
+  // Handle Form Submit Standar
+  const formGate = document.getElementById("form-login-gate");
+  if (formGate) {
+    formGate.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const u = (document.getElementById("gate-username").value || "").trim().toLowerCase();
+      const p = (document.getElementById("gate-password").value || "").trim();
+      const remember = document.getElementById("gate-remember") ? document.getElementById("gate-remember").checked : false;
+
+      let validRole = null;
+      if (u === "admin" && (p === "admin123" || p === "admin")) {
+        validRole = "admin";
+      } else if (u === "pengguna" && (p === "guru123" || p === "pengguna")) {
+        validRole = "pengguna";
+      } else if (u.length > 0 && p.length > 0) {
+        // Fallback fleksibel jika username dimasukkan
+        validRole = u.includes("admin") ? "admin" : "pengguna";
+      }
+
+      if (!validRole) {
+        window.showToast("Username atau kata sandi tidak sesuai!", true);
+        return;
+      }
+
+      const credObj = { username: u, password: p, role: validRole };
+
+      // Cek apakah sudah pernah tersimpan
+      const existing = localStorage.getItem(REMEMBER_KEY);
+      if (remember) {
+        try { localStorage.setItem(REMEMBER_KEY, JSON.stringify(credObj)); } catch(err){}
+        executeLogin(validRole);
+      } else if (!existing) {
+        // Tampilkan modal prompt simpan info login
+        showSavePrompt(credObj, () => {
+          executeLogin(validRole);
+        });
+      } else {
+        executeLogin(validRole);
+      }
+    });
+  }
+
+  // Sesi Timer Loop
+  let timerInterval = null;
+  function startSessionTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    const display = document.getElementById("session-countdown-txt");
+
+    function update() {
+      const now = Date.now();
+      const remain = appState.sessionExpires - now;
+      if (remain <= 0) {
+        clearInterval(timerInterval);
+        if (display) display.textContent = "00:00:00";
+        window.showToast("Sesi 2 jam telah berakhir. Silakan login kembali.", true);
+        window.handleLogout();
+        return;
+      }
+      const hrs = Math.floor(remain / (1000 * 60 * 60));
+      const mins = Math.floor((remain % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((remain % (1000 * 60)) / 1000);
+      if (display) {
+        display.textContent = `${String(hrs).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+      }
+    }
+    update();
+    timerInterval = setInterval(update, 1000);
+  }
+
+  window.handleLogout = function() {
+    try { sessionStorage.removeItem(AUTH_KEY); } catch(e){}
+    appState.userRole = null;
+    appState.sessionExpires = 0;
+    if (timerInterval) clearInterval(timerInterval);
+    document.body.classList.add("auth-locked");
+    const modal = document.getElementById("login-gate-modal");
+    if (modal) modal.classList.add("active");
+    checkSavedCredentials();
+  };
+
+  // Inisialisasi Data Santri & Catatan Poin
+  const sampleStudents = [
+    { id: "s1", name: "Abdul Rasyid Jumadil Amin Dawolo", cls: "1.A", gender: "L" },
+    { id: "s2", name: "Ahmad Zaki Al-Farizi", cls: "1.A", gender: "L" },
+    { id: "s3", name: "Aisyah Nur Aini", cls: "1.B", gender: "P" },
+    { id: "s4", name: "Bima Arya Prasetya", cls: "2.A", gender: "L" },
+    { id: "s5", name: "Dafiya Salma Mumtazah", cls: "3.B", gender: "P" },
+    { id: "s6", name: "Fathir Rizqullah Pratama", cls: "4.A", gender: "L" },
+    { id: "s7", name: "Hafizah Syakira", cls: "5.B", gender: "P" },
+    { id: "s8", name: "Muhammad Sultan Al-Ghazali", cls: "6.A", gender: "L" },
+    { id: "s9", name: "Naura Zahra Humaira", cls: "6.B", gender: "P" }
+  ];
+
+  const sampleRecords = [
+    { id: "r1", stuId: "s1", cls: "1.A", date: "2026-08-10", add: 20, ded: 0, note: "Juara 1 Lomba Tahfidz Juz 30 Tingkat Internal" },
+    { id: "r2", stuId: "s4", cls: "2.A", date: "2026-08-14", add: 0, ded: 10, note: "Terlambat apel pagi asrama tanpa keterangan" },
+    { id: "r3", stuId: "s6", cls: "4.A", date: "2026-08-18", add: 15, ded: 0, note: "Menjadi Imam Sholat Maghrib Asrama Waladan Solihan" }
+  ];
+
+  function loadInitialData() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        appState.students = parsed.students || sampleStudents;
+        appState.records = parsed.records || sampleRecords;
+      } else {
+        appState.students = sampleStudents;
+        appState.records = sampleRecords;
+        saveState();
+      }
+    } catch(e) {
+      appState.students = sampleStudents;
+      appState.records = sampleRecords;
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        students: appState.students,
+        records: appState.records
+      }));
+    } catch(e){}
+  }
+
+  function getStudentScore(stuId) {
+    const recs = appState.records.filter(r => r.stuId === stuId);
+    let pts = BASE_POINT;
+    recs.forEach(r => {
+      pts = pts + (Number(r.add) || 0) - (Number(r.ded) || 0);
+    });
+    return pts;
+  }
+
+  function getStatusLabel(score) {
+    if (score >= 200) return { label: "Sangat Baik", cls: "s-good" };
+    if (score >= 150) return { label: "Baik", cls: "s-ok" };
+    return { label: "Parah", cls: "s-bad" };
+  }
+
+  function renderAllViews() {
+    renderStats();
+    renderClassTable();
+    renderDashboardStudentTable();
+    renderInputSelects();
+    renderHistoryTable();
+    renderStudentList();
+    renderRekapView();
+    updateStudentCountBadge();
+  }
+
+  function updateStudentCountBadge() {
+    const el = document.getElementById("badge-total-stu");
+    if (el) el.textContent = appState.students.length;
+  }
+
+  function renderStats() {
+    const grid = document.getElementById("dash-stat-grid");
+    if (!grid) return;
+    const totalStu = appState.students.length;
+    let totalAdd = 0, totalDed = 0;
+    appState.records.forEach(r => {
+      totalAdd += Number(r.add) || 0;
+      totalDed += Number(r.ded) || 0;
+    });
+
+    let countSangatBaik = 0, countBaik = 0, countParah = 0;
+    appState.students.forEach(s => {
+      const sc = getStudentScore(s.id);
+      if (sc >= 200) countSangatBaik++;
+      else if (sc >= 150) countBaik++;
+      else countParah++;
+    });
+
+    grid.innerHTML = `
+      <div class="glass stat-card sc-blue">
+        <div class="stat-header"><span>Total Santri</span><div class="stat-icon"><i class="fa-solid fa-users"></i></div></div>
+        <div class="stat-val">${totalStu}</div>
+        <div class="stat-sub">SD Al-Basyir</div>
+      </div>
+      <div class="glass stat-card sc-green">
+        <div class="stat-header"><span>Total Prestasi (+)</span><div class="stat-icon"><i class="fa-solid fa-trophy"></i></div></div>
+        <div class="stat-val">+${totalAdd}</div>
+        <div class="stat-sub">Poin Penghargaan</div>
+      </div>
+      <div class="glass stat-card sc-red">
+        <div class="stat-header"><span>Pelanggaran (-)</span><div class="stat-icon"><i class="fa-solid fa-circle-exclamation"></i></div></div>
+        <div class="stat-val">-${totalDed}</div>
+        <div class="stat-sub">Poin Pengurangan</div>
+      </div>
+      <div class="glass stat-card sc-yellow">
+        <div class="stat-header"><span>Poin Baik (≥150)</span><div class="stat-icon"><i class="fa-solid fa-star"></i></div></div>
+        <div class="stat-val">${countSangatBaik + countBaik}</div>
+        <div class="stat-sub">Disiplin Terjaga</div>
+      </div>
+    `;
+  }
+
+  function renderClassTable() {
+    const tbl = document.getElementById("tbl-kelas-stat");
+    if (!tbl) return;
+    const classMap = {};
+    appState.students.forEach(s => {
+      if (!classMap[s.cls]) classMap[s.cls] = { total: 0, sumScore: 0, l: 0, p: 0 };
+      classMap[s.cls].total++;
+      if (s.gender === "L") classMap[s.cls].l++; else classMap[s.cls].p++;
+      classMap[s.cls].sumScore += getStudentScore(s.id);
+    });
+
+    const sortedClasses = Object.keys(classMap).sort();
+    let rows = `<thead><tr><th>Rombel Kelas</th><th>Jml Santri</th><th>Santri (L)</th><th>Santriwati (P)</th><th>Rata-rata Poin</th><th>Status Kelas</th></tr></thead><tbody>`;
+    sortedClasses.forEach(cls => {
+      const data = classMap[cls];
+      const avg = Math.round(data.sumScore / data.total);
+      const st = getStatusLabel(avg);
+      rows += `
+        <tr>
+          <td><strong style="color:#38bdf8;">Kelas ${cls}</strong></td>
+          <td>${data.total} Santri</td>
+          <td>${data.l} Santri</td>
+          <td>${data.p} Santriwati</td>
+          <td><strong style="font-family:'JetBrains Mono'">${avg}</strong> / 250</td>
+          <td><span class="status-badge ${st.cls}">${st.label}</span></td>
+        </tr>
+      `;
+    });
+    rows += "</tbody>";
+    tbl.innerHTML = rows;
+  }
+
+  function renderDashboardStudentTable() {
+    const tbl = document.getElementById("tbl-dash-stu");
+    if (!tbl) return;
+    const q = (document.getElementById("dash-search")?.value || "").toLowerCase();
+    const selCls = document.getElementById("dash-filter-cls")?.value || "";
+    const selStat = document.getElementById("dash-filter-stat")?.value || "";
+
+    const filtered = appState.students.filter(s => {
+      const score = getStudentScore(s.id);
+      const st = getStatusLabel(score).label;
+      const matchQ = s.name.toLowerCase().includes(q) || s.cls.toLowerCase().includes(q);
+      const matchCls = !selCls || s.cls === selCls;
+      const matchStat = !selStat || st === selStat;
+      return matchQ && matchCls && matchStat;
+    });
+
+    let html = `<thead><tr><th>No</th><th>Nama Santri / Siswa</th><th>Kelas</th><th>Total Poin (Basis 250)</th><th>Progres Poin</th><th>Status Kedisiplinan</th></tr></thead><tbody>`;
+    if (filtered.length === 0) {
+      html += `<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--tx-muted);">Tidak ada data santri ditemukan.</td></tr>`;
+    } else {
+      filtered.forEach((s, idx) => {
+        const sc = getStudentScore(s.id);
+        const st = getStatusLabel(sc);
+        const percent = Math.min(100, Math.max(0, (sc / BASE_POINT) * 100));
+        let fillColor = "#10b981";
+        if (sc < 150) fillColor = "#f43f5e";
+        else if (sc < 200) fillColor = "#f59e0b";
+
+        html += `
+          <tr>
+            <td>${idx + 1}</td>
+            <td><strong>${s.name}</strong> <span style="font-size:11px; color:var(--tx-dim);">(${s.gender})</span></td>
+            <td><span class="badge-app" style="font-size:11px; padding:2px 8px; border-radius:6px; background:rgba(255,255,255,0.08);">${s.cls}</span></td>
+            <td><strong style="font-size:14px; font-family:'JetBrains Mono';">${sc}</strong> <span style="font-size:11px; color:var(--tx-muted);">/ 250</span></td>
+            <td style="min-width:120px;">
+              <div class="score-bar">
+                <div class="score-bar-fill" style="width:${percent}%; background:${fillColor};"></div>
+              </div>
+            </td>
+            <td><span class="status-badge ${st.cls}">${st.label}</span></td>
+          </tr>
+        `;
+      });
+    }
+    html += "</tbody>";
+    tbl.innerHTML = html;
+  }
+
+  function renderInputSelects() {
+    const clsSelect = document.getElementById("input-cls");
+    const stuSelect = document.getElementById("input-sis");
+    const filterClsDash = document.getElementById("dash-filter-cls");
+    const histCls = document.getElementById("hist-filter-cls");
+    const stuFilterCls = document.getElementById("stu-filter-cls");
+    const rekapCls = document.getElementById("rekap-cls");
+    const rekapStu = document.getElementById("rekap-stu");
+
+    const classes = [...new Set(appState.students.map(s => s.cls))].sort();
+
+    if (clsSelect) {
+      const curCls = clsSelect.value;
+      clsSelect.innerHTML = `<option value="">-- Pilih Kelas --</option>` + classes.map(c => `<option value="${c}">Kelas ${c}</option>`).join("");
+      if (curCls) clsSelect.value = curCls;
+
+      clsSelect.onchange = function() {
+        const selected = clsSelect.value;
+        const filtered = appState.students.filter(s => s.cls === selected);
+        if (stuSelect) {
+          stuSelect.innerHTML = `<option value="">-- Pilih Santri --</option>` + filtered.map(s => `<option value="${s.id}">${s.name}</option>`).join("");
+        }
+      };
+    }
+
+    const classOptionsAll = `<option value="">Semua Kelas</option>` + classes.map(c => `<option value="${c}">Kelas ${c}</option>`).join("");
+    if (filterClsDash) filterClsDash.innerHTML = classOptionsAll;
+    if (histCls) histCls.innerHTML = classOptionsAll;
+    if (stuFilterCls) stuFilterCls.innerHTML = classOptionsAll;
+    if (rekapCls) {
+      rekapCls.innerHTML = classOptionsAll;
+      rekapCls.onchange = function() {
+        const c = rekapCls.value;
+        const fl = c ? appState.students.filter(s => s.cls === c) : appState.students;
+        if (rekapStu) {
+          rekapStu.innerHTML = `<option value="">Semua Santri</option>` + fl.map(s => `<option value="${s.id}">${s.name} (${s.cls})</option>`).join("");
+        }
+        renderRekapView();
+      };
+    }
+    if (rekapStu) {
+      rekapStu.innerHTML = `<option value="">Semua Santri</option>` + appState.students.map(s => `<option value="${s.id}">${s.name} (${s.cls})</option>`).join("");
+    }
+  }
+
+  // RIWAYAT POIN TABLE:
+  // Tombol Edit dan Hapus selalu muncul dan aktif bagi Admin maupun Pengguna (canMod = true)
+  function renderHistoryTable() {
+    const tbl = document.getElementById("tbl-history");
+    if (!tbl) return;
+    const q = (document.getElementById("hist-search")?.value || "").toLowerCase();
+    const selCls = document.getElementById("hist-filter-cls")?.value || "";
+
+    const filtered = appState.records.filter(r => {
+      const stu = appState.students.find(s => s.id === r.stuId) || { name: "Tidak diketahui", cls: "-" };
+      const matchQ = stu.name.toLowerCase().includes(q) || r.note.toLowerCase().includes(q);
+      const matchCls = !selCls || r.cls === selCls || stu.cls === selCls;
+      return matchQ && matchCls;
+    });
+
+    let html = `<thead><tr><th>No</th><th>Tanggal</th><th>Santri</th><th>Kelas</th><th>(+ Poin)</th><th>(- Poin)</th><th>Keterangan / Kejadian</th><th>Berkas</th><th style="text-align:center;">Aksi Pengguna</th></tr></thead><tbody>`;
+    if (filtered.length === 0) {
+      html += `<tr><td colspan="9" style="text-align:center; padding:20px; color:var(--tx-muted);">Belum ada riwayat catatan poin.</td></tr>`;
+    } else {
+      filtered.forEach((r, idx) => {
+        const stu = appState.students.find(s => s.id === r.stuId) || { name: "-", cls: "-" };
+        const allowed = canMod(r); // Selalu true untuk Pengguna & Admin
+
+        let actionBtns = `
+          <div style="display:inline-flex; gap:6px; justify-content:center;">
+            <button class="btn btn-sm btn-action-icon" onclick="window.editRecord('${r.id}')" title="Edit Catatan Poin Ini" style="background:rgba(0,166,255,0.18); color:#38bdf8; border-color:rgba(56,189,248,0.4);">
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            </button>
+            <button class="btn btn-sm btn-danger btn-action-icon" onclick="window.deleteRecord('${r.id}')" title="Hapus Catatan Poin Ini">
+              <i class="fa-solid fa-trash-can"></i> Hapus
+            </button>
+          </div>
+        `;
+
+        html += `
+          <tr>
+            <td>${idx + 1}</td>
+            <td>${r.date}</td>
+            <td><strong>${stu.name}</strong></td>
+            <td><span class="badge-app" style="font-size:10px; padding:2px 7px; border-radius:6px; background:rgba(255,255,255,0.08);">${stu.cls}</span></td>
+            <td style="color:#34d399; font-weight:700;">+${r.add || 0}</td>
+            <td style="color:#fb7185; font-weight:700;">-${r.ded || 0}</td>
+            <td>${r.note}</td>
+            <td>
+              <a class="btn btn-drive btn-sm" href="https://drive.google.com/drive/folders/1M8mxVZipaR83rY_QO-1RMsxLL7Rgd-aJ" target="_blank" title="Lihat Bukti Foto di Google Drive">
+                <i class="fa-brands fa-google-drive"></i> Bukti
+              </a>
+            </td>
+            <td style="text-align:center; white-space:nowrap;">
+              ${actionBtns}
+            </td>
+          </tr>
+        `;
+      });
+    }
+    html += "</tbody>";
+    tbl.innerHTML = html;
+  }
+
+  // Edit & Hapus Record Poin (Terbuka Penuh untuk Pengguna & Admin)
+  window.editRecord = function(recId) {
+    const rec = appState.records.find(r => r.id === recId);
+    if (!rec) return;
+
+    // Pastikan accordion form terbuka
+    const pForm = document.getElementById("panel-form-poin");
+    if (pForm) pForm.classList.add("open");
+
+    const heading = document.getElementById("form-poin-heading");
+    const editId = document.getElementById("edit-record-id");
+    const clsSel = document.getElementById("input-cls");
+    const sisSel = document.getElementById("input-sis");
+    const tglInp = document.getElementById("input-tgl");
+    const addInp = document.getElementById("input-add");
+    const dedInp = document.getElementById("input-ded");
+    const noteInp = document.getElementById("input-note");
+    const btnCancel = document.getElementById("btn-cancel-edit");
+    const btnSave = document.getElementById("btn-save-record");
+
+    if (heading) heading.textContent = `Edit Catatan Poin: ${rec.date}`;
+    if (editId) editId.value = rec.id;
+    if (clsSel) {
+      clsSel.value = rec.cls;
+      // populate siswa dropdown
+      const filtered = appState.students.filter(s => s.cls === rec.cls);
+      if (sisSel) {
+        sisSel.innerHTML = `<option value="">-- Pilih Santri --</option>` + filtered.map(s => `<option value="${s.id}">${s.name}</option>`).join("");
+        sisSel.value = rec.stuId;
+      }
+    }
+    if (tglInp) tglInp.value = rec.date;
+    if (addInp) addInp.value = rec.add || 0;
+    if (dedInp) dedInp.value = rec.ded || 0;
+    if (noteInp) noteInp.value = rec.note || "";
+    if (btnCancel) btnCancel.style.display = "inline-flex";
+    if (btnSave) btnSave.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Perbarui Catatan`;
+
+    // Switch ke tab data jika belum
+    const tabData = document.querySelector('nav button.tab-btn[data-tab="data"]');
+    if (tabData) tabData.click();
+    pForm?.scrollIntoView({ behavior: 'smooth' });
+    window.showToast("Mode Edit aktif. Silakan sesuaikan data lalu simpan.");
+  };
+
+  window.cancelRecordEdit = function() {
+    const form = document.getElementById("form-record");
+    if (form) form.reset();
+    const editId = document.getElementById("edit-record-id");
+    if (editId) editId.value = "";
+    const heading = document.getElementById("form-poin-heading");
+    if (heading) heading.textContent = "Input Catatan Pelanggaran / Prestasi Baru";
+    const btnCancel = document.getElementById("btn-cancel-edit");
+    if (btnCancel) btnCancel.style.display = "none";
+    const btnSave = document.getElementById("btn-save-record");
+    if (btnSave) btnSave.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Simpan Catatan Poin`;
+    window.showToast("Batal edit catatan.");
+  };
+
+  window.deleteRecord = function(recId) {
+    const rec = appState.records.find(r => r.id === recId);
+    if (!rec) return;
+    const stu = appState.students.find(s => s.id === rec.stuId);
+    const stuName = stu ? stu.name : "Santri";
+
+    askConfirm(`Apakah Anda yakin ingin menghapus catatan poin "${stuName}" (${rec.date})? Tindakan ini akan mengembalikan saldo poin santri.`, "Hapus Catatan Poin", () => {
+      appState.records = appState.records.filter(r => r.id !== recId);
+      saveState();
+      renderAllViews();
+      window.showToast("Catatan poin berhasil dihapus!");
+    });
+  };
+
+  // DAFTAR SISWA TABLE & FORM:
+  // Tombol Edit dan Hapus siswa kini dapat diakses dan digunakan oleh Pengguna
+  function renderStudentList() {
+    const tbl = document.getElementById("tbl-students");
+    if (!tbl) return;
+    const q = (document.getElementById("stu-search")?.value || "").toLowerCase();
+    const selCls = document.getElementById("stu-filter-cls")?.value || "";
+    const selGen = document.getElementById("stu-filter-gender")?.value || "";
+
+    const filtered = appState.students.filter(s => {
+      const matchQ = s.name.toLowerCase().includes(q) || s.cls.toLowerCase().includes(q);
+      const matchCls = !selCls || s.cls === selCls;
+      const matchGen = !selGen || s.gender === selGen;
+      return matchQ && matchCls && matchGen;
+    });
+
+    let html = `<thead><tr><th>No</th><th>ID</th><th>Nama Lengkap Santri</th><th>Kelas</th><th>L/P</th><th>Total Poin</th><th>Status</th><th style="text-align:center;">Aksi Kelola</th></tr></thead><tbody>`;
+    if (filtered.length === 0) {
+      html += `<tr><td colspan="8" style="text-align:center; padding:20px; color:var(--tx-muted);">Tidak ada santri sesuai kriteria.</td></tr>`;
+    } else {
+      filtered.forEach((s, idx) => {
+        const sc = getStudentScore(s.id);
+        const st = getStatusLabel(sc);
+        const allowed = canMod(s); // Selalu true untuk Pengguna & Admin
+
+        let actionBtns = `
+          <div style="display:inline-flex; gap:6px; justify-content:center;">
+            <button class="btn btn-sm btn-action-icon" onclick="window.editStudent('${s.id}')" title="Edit Data Siswa" style="background:rgba(0,166,255,0.18); color:#38bdf8; border-color:rgba(56,189,248,0.4);">
+              <i class="fa-solid fa-user-pen"></i> Edit
+            </button>
+            <button class="btn btn-sm btn-danger btn-action-icon" onclick="window.deleteStudent('${s.id}')" title="Hapus Siswa">
+              <i class="fa-solid fa-trash-can"></i> Hapus
+            </button>
+          </div>
+        `;
+
+        html += `
+          <tr>
+            <td>${idx + 1}</td>
+            <td style="font-family:'JetBrains Mono'; font-size:11px; color:var(--tx-muted);">${s.id}</td>
+            <td><strong>${s.name}</strong></td>
+            <td><span class="badge-app" style="font-size:11px; padding:2px 7px; border-radius:6px; background:rgba(255,255,255,0.08);">${s.cls}</span></td>
+            <td>${s.gender === 'L' ? 'Santri (L)' : 'Santriwati (P)'}</td>
+            <td><strong style="font-family:'JetBrains Mono'">${sc}</strong></td>
+            <td><span class="status-badge ${st.cls}">${st.label}</span></td>
+            <td style="text-align:center; white-space:nowrap;">
+              ${actionBtns}
+            </td>
+          </tr>
+        `;
+      });
+    }
+    html += "</tbody>";
+    tbl.innerHTML = html;
+  }
+
+  // Edit & Hapus Santri (Bisa diakses Pengguna & Admin)
+  window.editStudent = function(stuId) {
+    const s = appState.students.find(item => item.id === stuId);
+    if (!s) return;
+
+    const pForm = document.getElementById("panel-form-siswa");
+    if (pForm) pForm.classList.add("open");
+
+    const editId = document.getElementById("edit-student-id");
+    const nameInp = document.getElementById("stu-name");
+    const clsInp = document.getElementById("stu-cls");
+    const genInp = document.getElementById("stu-gender");
+    const heading = document.getElementById("heading-siswa-form");
+    const btnCancel = document.getElementById("btn-cancel-stu");
+    const btnSave = document.getElementById("btn-save-stu");
+
+    if (editId) editId.value = s.id;
+    if (nameInp) nameInp.value = s.name;
+    if (clsInp) clsInp.value = s.cls;
+    if (genInp) genInp.value = s.gender;
+    if (heading) heading.textContent = `Edit Santri: ${s.name}`;
+    if (btnCancel) btnCancel.style.display = "inline-flex";
+    if (btnSave) btnSave.innerHTML = `<i class="fa-solid fa-user-check"></i> Perbarui Santri`;
+
+    pForm?.scrollIntoView({ behavior: 'smooth' });
+    window.showToast("Mode Edit Santri aktif.");
+  };
+
+  window.cancelStudentEdit = function() {
+    const form = document.getElementById("form-student");
+    if (form) form.reset();
+    const editId = document.getElementById("edit-student-id");
+    if (editId) editId.value = "";
+    const heading = document.getElementById("heading-siswa-form");
+    if (heading) heading.textContent = "Tambah / Kelola Master Siswa";
+    const btnCancel = document.getElementById("btn-cancel-stu");
+    if (btnCancel) btnCancel.style.display = "none";
+    const btnSave = document.getElementById("btn-save-stu");
+    if (btnSave) btnSave.innerHTML = `<i class="fa-solid fa-user-check"></i> Simpan Data Siswa`;
+  };
+
+  window.deleteStudent = function(stuId) {
+    const s = appState.students.find(item => item.id === stuId);
+    if (!s) return;
+
+    askConfirm(`Apakah Anda yakin ingin menghapus santri "${s.name}" (${s.cls}) beserta seluruh catatan poinnya?`, "Hapus Master Santri", () => {
+      appState.students = appState.students.filter(item => item.id !== stuId);
+      appState.records = appState.records.filter(r => r.stuId !== stuId);
+      saveState();
+      renderAllViews();
+      window.showToast(`Santri "${s.name}" berhasil dihapus.`);
+    });
+  };
+
+  // Form Student Submit
+  const formStu = document.getElementById("form-student");
+  if (formStu) {
+    formStu.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const editId = (document.getElementById("edit-student-id")?.value || "").trim();
+      const name = (document.getElementById("stu-name")?.value || "").trim();
+      const cls = (document.getElementById("stu-cls")?.value || "").trim().toUpperCase();
+      const gender = document.getElementById("stu-gender")?.value || "L";
+
+      if (!name || !cls) {
+        window.showToast("Lengkapi nama dan kelas!", true);
+        return;
+      }
+
+      if (editId) {
+        // Edit existing
+        const idx = appState.students.findIndex(s => s.id === editId);
+        if (idx !== -1) {
+          appState.students[idx].name = name;
+          appState.students[idx].cls = cls;
+          appState.students[idx].gender = gender;
+          window.showToast(`Data santri "${name}" berhasil diperbarui!`);
+        }
+      } else {
+        // Add new
+        const newId = "s" + (Date.now().toString(36) + Math.random().toString(36).substr(2, 4));
+        appState.students.unshift({
+          id: newId,
+          name, cls, gender
+        });
+        window.showToast(`Santri baru "${name}" berhasil ditambahkan!`);
+      }
+
+      saveState();
+      window.cancelStudentEdit();
+      renderAllViews();
+    });
+  }
+
+  function renderRekapView() {
+    const tbl = document.getElementById("tbl-rekap");
+    if (!tbl) return;
+    const cls = document.getElementById("rekap-cls")?.value || "";
+    const stuId = document.getElementById("rekap-stu")?.value || "";
+    const mode = document.getElementById("rekap-mode")?.value || "detail";
+    const q = (document.getElementById("rekap-q")?.value || "").toLowerCase();
+
+    if (mode === "ringkasan") {
+      let filtered = appState.students.filter(s => {
+        const matchC = !cls || s.cls === cls;
+        const matchS = !stuId || s.id === stuId;
+        const matchQ = s.name.toLowerCase().includes(q) || s.cls.toLowerCase().includes(q);
+        return matchC && matchS && matchQ;
+      });
+
+      let html = `<thead><tr><th>No</th><th>Nama Santri</th><th>Kelas</th><th>Poin Tambahan</th><th>Poin Pengurangan</th><th>Total Poin Akhir</th><th>Status</th></tr></thead><tbody>`;
+      filtered.forEach((s, i) => {
+        const recs = appState.records.filter(r => r.stuId === s.id);
+        const sumAdd = recs.reduce((a, b) => a + (Number(b.add) || 0), 0);
+        const sumDed = recs.reduce((a, b) => a + (Number(b.ded) || 0), 0);
+        const finalScore = BASE_POINT + sumAdd - sumDed;
+        const st = getStatusLabel(finalScore);
+        html += `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>${s.name}</strong></td>
+            <td>${s.cls}</td>
+            <td style="color:#34d399;">+${sumAdd}</td>
+            <td style="color:#fb7185;">-${sumDed}</td>
+            <td><strong style="font-family:'JetBrains Mono'">${finalScore}</strong> / 250</td>
+            <td><span class="status-badge ${st.cls}">${st.label}</span></td>
+          </tr>
+        `;
+      });
+      html += "</tbody>";
+      tbl.innerHTML = html;
+    } else {
+      let filtered = appState.records.filter(r => {
+        const stu = appState.students.find(s => s.id === r.stuId) || { name: "-", cls: "-" };
+        const matchC = !cls || r.cls === cls || stu.cls === cls;
+        const matchS = !stuId || r.stuId === stuId;
+        const matchQ = stu.name.toLowerCase().includes(q) || r.note.toLowerCase().includes(q);
+        return matchC && matchS && matchQ;
+      });
+
+      let html = `<thead><tr><th>No</th><th>Tanggal</th><th>Santri</th><th>Kelas</th><th>Prestasi (+)</th><th>Pelanggaran (-)</th><th>Deskripsi Kejadian</th></tr></thead><tbody>`;
+      filtered.forEach((r, i) => {
+        const stu = appState.students.find(s => s.id === r.stuId) || { name: "-", cls: "-" };
+        html += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${r.date}</td>
+            <td><strong>${stu.name}</strong></td>
+            <td>${stu.cls}</td>
+            <td style="color:#34d399;">+${r.add}</td>
+            <td style="color:#fb7185;">-${r.ded}</td>
+            <td>${r.note}</td>
+          </tr>
+        `;
+      });
+      html += "</tbody>";
+      tbl.innerHTML = html;
+    }
+  }
+
+  // Bind Form Record Poin (Save / Update)
+  const formRec = document.getElementById("form-record");
+  if (formRec) {
+    formRec.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const editId = (document.getElementById("edit-record-id")?.value || "").trim();
+      const cls = document.getElementById("input-cls").value;
+      const stuId = document.getElementById("input-sis").value;
+      const date = document.getElementById("input-tgl").value;
+      const add = Number(document.getElementById("input-add").value) || 0;
+      const ded = Number(document.getElementById("input-ded").value) || 0;
+      const note = document.getElementById("input-note").value;
+
+      if (!stuId || !date) {
+        window.showToast("Pilih santri dan tanggal!", true);
+        return;
+      }
+
+      if (editId) {
+        const idx = appState.records.findIndex(r => r.id === editId);
+        if (idx !== -1) {
+          appState.records[idx] = {
+            id: editId,
+            stuId, cls, date, add, ded, note
+          };
+          window.showToast("Catatan poin berhasil diperbarui!");
+        }
+      } else {
+        appState.records.unshift({
+          id: "r" + Date.now(),
+          stuId, cls, date, add, ded, note
+        });
+        window.showToast("Catatan poin baru berhasil disimpan!");
+      }
+
+      saveState();
+      window.cancelRecordEdit();
+      renderAllViews();
+    });
+  }
+
+  // Muat Ulang Data Asal (Seed Awal)
+  const btnSeed = document.getElementById("btn-quick-seed");
+  if (btnSeed) {
+    btnSeed.addEventListener("click", () => {
+      askConfirm("Muat ulang data sampel awal? Data perubahan sementara akan diganti dengan data referensi bawaan.", "Pulihkan Data Asal", () => {
+        appState.students = [...sampleStudents];
+        appState.records = [...sampleRecords];
+        saveState();
+        renderAllViews();
+        window.showToast("Data asal referensi berhasil dimuat ulang!");
+      });
+    });
+  }
+
+  // Backup JSON
+  const btnExport = document.getElementById("btn-export-all");
+  if (btnExport) {
+    btnExport.addEventListener("click", () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const a = document.createElement("a");
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", `albasyir_poin_backup_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.showToast("Cadangan file JSON berhasil diunduh.");
+    });
+  }
+
+  // Cetak & CSV
+  const btnPrint = document.getElementById("btn-print");
+  if (btnPrint) {
+    btnPrint.addEventListener("click", () => {
+      window.print();
+    });
+  }
+
+  const btnCsv = document.getElementById("btn-csv");
+  if (btnCsv) {
+    btnCsv.addEventListener("click", () => {
+      let csv = "No,Tanggal,Nama Santri,Kelas,Prestasi(+),Pelanggaran(-),Keterangan\n";
+      appState.records.forEach((r, idx) => {
+        const stu = appState.students.find(s => s.id === r.stuId) || { name: "-" };
+        csv += `"${idx + 1}","${r.date}","${stu.name}","${r.cls}","+${r.add}","-${r.ded}","${(r.note || '').replace(/"/g, '""')}"\n`;
+      });
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `rekap_poin_santri_${Date.now()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      window.showToast("File CSV berhasil dibuat!");
+    });
+  }
+
+  // Tab Switching
+  document.querySelectorAll("nav.nav-bar button.tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("nav.nav-bar button.tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const target = btn.getAttribute("data-tab");
+      document.querySelectorAll(".view-section").forEach(s => s.classList.remove("active"));
+      const activeSec = document.getElementById("view-" + target);
+      if (activeSec) activeSec.classList.add("active");
+    });
+  });
+
+  // Accordion Toggle
+  document.querySelectorAll(".acc-header").forEach(h => {
+    h.addEventListener("click", () => {
+      const panel = h.closest(".acc-panel");
+      if (panel) panel.classList.toggle("open");
+    });
+  });
+
+  // Floating Dock Toggle Semua Panel
+  const dockBtn = document.getElementById("btn-toggle-all-panels");
+  let allOpen = false;
+  if (dockBtn) {
+    dockBtn.addEventListener("click", () => {
+      allOpen = !allOpen;
+      document.querySelectorAll(".acc-panel").forEach(p => {
+        if (allOpen) p.classList.add("open");
+        else p.classList.remove("open");
+      });
+      const lbl = document.getElementById("dock-toggle-label");
+      const arr = document.getElementById("dock-arrow-icon");
+      if (lbl) lbl.textContent = allOpen ? "Mode Panel: Terbuka Penuh" : "Mode Panel: Tertutup (Minimalis)";
+      if (arr) arr.className = allOpen ? "fa-solid fa-chevron-down" : "fa-solid fa-chevron-up";
+    });
+  }
+
+  // Filter Listeners
+  ["dash-search", "dash-filter-cls", "dash-filter-stat"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", renderDashboardStudentTable);
+  });
+  ["hist-search", "hist-filter-cls"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", renderHistoryTable);
+  });
+  ["stu-search", "stu-filter-cls", "stu-filter-gender"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", renderStudentList);
+  });
+  ["rekap-mode", "rekap-q"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("input", renderRekapView);
+  });
+
+  // Inisialisasi saat window dimuat
+  window.addEventListener("DOMContentLoaded", () => {
+    loadInitialData();
+    checkSavedCredentials();
+
+    // Cek jika sudah ada sesi aktif sebelumnya di sessionStorage
+    try {
+      const sess = sessionStorage.getItem(AUTH_KEY);
+      if (sess) {
+        const parsed = JSON.parse(sess);
+        if (parsed.expires > Date.now()) {
+          appState.userRole = parsed.role;
+          appState.sessionExpires = parsed.expires;
+          executeLogin(parsed.role);
+          return;
+        }
+      }
+    } catch(e){}
+  });
+
+})();
+</script>
+</body></html>
